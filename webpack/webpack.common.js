@@ -1,17 +1,8 @@
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
-
-const config = require("./config");
 
 module.exports = {
   entry: ["./index.js"],
-  output: {
-    path:
-      process.env.NODE_ENV === "development"
-        ? config[`OUTPUT_PATH_development`]
-        : config[`OUTPUT_PATH_production`]
-  },
   module: {
     rules: [
       {
@@ -41,18 +32,6 @@ module.exports = {
       cleanAfterEveryBuildPatterns: ["*.js"]
     }),
 
-    new HtmlWebpackPlugin({
-      template: "./public/index.html",
-      filename: "./index.html",
-      minify: {
-        collapseWhitespace: true,
-        removeComments: true,
-        removeRedundantAttributes: true,
-        removeScriptTypeAttributes: true,
-        removeStyleLinkTypeAttributes: true,
-        useShortDoctype: true
-      }
-    }),
     new CopyPlugin([
       {
         from: "./config/Mashup.qext",

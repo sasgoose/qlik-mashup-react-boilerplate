@@ -12,7 +12,11 @@ const App = () => {
       .catch(err => console.log(err));
   });
 
-  return <main className="mashup">Mashup</main>;
+  return (
+    <main className="mashup">
+      <div className="mashup__content">Hello Qlik!</div>
+    </main>
+  );
 };
 
 export default App;
