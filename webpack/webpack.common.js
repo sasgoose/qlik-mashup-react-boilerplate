@@ -1,37 +1,46 @@
-"use strict";
-
-const webpack = require("webpack");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 
+const config = require("./config");
+
 module.exports = {
   entry: ["./index.js"],
   output: {
-    path: "//vmmh0qls001/QlikShare/StaticContent/Extensions/Mash"
+    path: config[`OUTPUT_PATH_${process.env.NODE_ENV}`]
   },
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader"
         }
+      },
+      {
+        test: /\.(jpg|png|gif|svg|pdf|ico)$/,
+        use: [
+          {
+            loader: "url-loader"
+          }
+        ]
       }
     ]
+  },
+  resolve: {
+    extensions: [".js", ".jsx"]
   },
   devtool: "inline-source-map",
   plugins: [
     new CleanWebpackPlugin({
       cleanStaleWebpackAssets: false,
-      cleanAfterEveryBuildPatterns: ["*.*.js"]
+      cleanAfterEveryBuildPatterns: ["*.js"]
     }),
-    new webpack.HashedModuleIdsPlugin(),
 
     new HtmlWebpackPlugin({
       template: "./public/index.html",
-      filename: "./Mash.html",
+      filename: "./index.html",
       minify: {
         collapseWhitespace: true,
         removeComments: true,
@@ -43,11 +52,11 @@ module.exports = {
     }),
     new CopyPlugin([
       {
-        from: "Mash.qext",
-        to: "Mash.qext"
+        from: "./config/Mashup.qext",
+        to: "Mashup.qext"
       },
       {
-        from: "wbfolder.wbl",
+        from: "./config/wbfolder.wbl",
         to: "wbfolder.wbl"
       }
     ])

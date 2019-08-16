@@ -3,7 +3,7 @@ const prefix = window.location.pathname.substr(
   window.location.pathname.toLowerCase().lastIndexOf("/extensions") + 1
 );
 
-const config = {
+export const config = {
   host: window.location.hostname,
   prefix: prefix,
   port: window.location.port,
@@ -21,7 +21,7 @@ window.require.config({
 
 const qlik = new Promise((resolve, reject) => {
   try {
-    window.require(["js/qlik"], function(qlik) {
+    window.require(["js/qlik"], qlik => {
       resolve(qlik);
     });
   } catch (e) {

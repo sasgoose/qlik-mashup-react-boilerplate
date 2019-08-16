@@ -1,17 +1,18 @@
-import React, { Component } from "react";
-import qlik from "./qlik";
+import React, { useEffect } from "react";
 
-export default class App extends Component {
-  componentDidMount() {
-    qlik
-      .then(res => {
-        this.qlik = res;
-        console.log(this.qlik);
+import qlikLoader from "./qlik";
+
+const App = () => {
+  useEffect(() => {
+    qlikLoader
+      .then(qlik => {
+        // You can now use the qlik APIs
+        // qlik.openApp('some app id')
       })
       .catch(err => console.log(err));
-  }
+  });
 
-  render() {
-    return <div>Hello Qlik</div>;
-  }
-}
+  return <main className="mashup">Mashup</main>;
+};
+
+export default App;
