@@ -21,10 +21,10 @@ then
    - main.js
    - runtime.js
    - vendors.js
-   - main.css
+   - main.css 
 6. Copy all of the contents of your .qext file on **devhub** to _config/Mashup.qext_ (local directory)
 7. On your local directory, rename _Mashup.qext_ to be the same as your mashup name
-8. Replace all instances of _Mashup_ to be _{mashup_name}_ on *config/wbfolder/wbl*. You can also add other files you want to view on the Mashup editor such as main.js *(optional)*
+8. Replace all instances of _Mashup_ to be _{mashup_name}_ on *config/wbfolder.wbl*. You can also add other files you want to view on the Mashup editor such as main.js *(optional)*
 9. In the **config.js** file under webpack, replace the _{server_name}_ and _{mashup_name}_ with your server name and mashup name
 10. In **webpack.common.js**, change the following:
    - HtmlWebpackPlugin -> filename -> "./{mashup_name}.html"
