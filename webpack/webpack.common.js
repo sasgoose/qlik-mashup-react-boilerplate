@@ -7,7 +7,10 @@ const config = require("./config");
 module.exports = {
   entry: ["./index.js"],
   output: {
-    path: config[`OUTPUT_PATH_${process.env.NODE_ENV}`]
+    path:
+      process.env.NODE_ENV === "development"
+        ? config[`OUTPUT_PATH_development`]
+        : config[`OUTPUT_PATH_production`]
   },
   module: {
     rules: [
